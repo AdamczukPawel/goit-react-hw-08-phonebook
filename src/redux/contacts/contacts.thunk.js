@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+
+
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_arg, thunkAPI) => {

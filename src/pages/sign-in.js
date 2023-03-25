@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../redux/auth/auth.thunk';
+import { Button, Card, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 export const SignIn = () => {
   const dispatch = useDispatch();
@@ -17,16 +18,26 @@ export const SignIn = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <label>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <Card
+      padding="50px"
+      align="center"
+      maxWidth="fit-content"
+      marginRight="auto"
+      marginLeft="auto"
+    >
+      <form onSubmit={handleSubmit} autoComplete="off" align="center">
+        <FormControl isRequired width="300px">
+          <FormLabel>Email</FormLabel>
+          <Input type="email" name="email" />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" name="password" />
+        </FormControl>
+        <Button colorScheme="blue" type="submit" marginTop="50px">
+          Log in
+        </Button>
+      </form>
+    </Card>
   );
 };

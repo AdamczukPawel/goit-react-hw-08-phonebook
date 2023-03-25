@@ -1,12 +1,10 @@
-.title {
-  margin-left: 20px;
-}
-
 .container {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.container__title {
-  font-size: 25px;
-  font-weight: 600;
+.title {
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }

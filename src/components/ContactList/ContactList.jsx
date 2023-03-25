@@ -1,3 +1,4 @@
+import { Button, CircularProgress } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contacts.thunk';
 import {
@@ -19,19 +20,27 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && !error && <b className={css.loading}>Loading...</b>}
+      {isLoading && !error && (
+        <CircularProgress
+          className={css.loading}
+          isIndeterminate
+          color="blue.300"
+        />
+      )}
       {error && <b className={css.error}>{error}</b>}
       <ul className={css.list}>
         {filteredContacts.map(contact => (
           <li key={contact.id} className={css.element}>
             {contact.name}: {contact.number}
-            <button
+            <Button
+              colorScheme="blue"
+              size="sm"
               className={css.button}
               type="button"
               onClick={() => deleteSelectedContact(contact.id)}
             >
               Delete
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

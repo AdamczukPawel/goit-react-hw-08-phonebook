@@ -11,6 +11,8 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/auth.thunk';
 
+import { CircularProgress } from '@chakra-ui/react';
+
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
@@ -20,7 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <div>Loading...</div>
+    <CircularProgress isIndeterminate color="blue.300" />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

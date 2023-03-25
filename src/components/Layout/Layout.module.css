@@ -1,12 +1,24 @@
-.container {
-}
-
 .nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 50px;
-  border-bottom: 2px solid black;
   margin-bottom: 100px;
   padding-right: 50px;
-  }
+
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+}
