@@ -1,3 +1,9 @@
+.loading,
+.error {
+  padding-top: 20px;
+  margin-left: 20px;
+}
+
 .element {
   margin-top: 20px;
 }

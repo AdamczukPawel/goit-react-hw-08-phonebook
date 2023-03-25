@@ -11,9 +11,12 @@ export const Filter = () => {
   };
 
   return (
-    <div className={css.container}>
-      <p className={css.title}>Find contact by name</p>
-      <input type="text" onChange={handleFilterChange} />
-    </div>
+    <>
+      <h2 className={css.title}>Contacts</h2>
+      <div className={css.container}>
+        <p className={css.container__title}>Find contact by name</p>
+        <input type="text" onChange={handleFilterChange} />
+      </div>
+    </>
   );
 };

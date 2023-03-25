@@ -1,29 +1,49 @@
-import css from './App.module.css';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { ContactForm } from './ContactForm/ContactForm';
-import { fetchContacts } from 'redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Layout } from './Layout/Layout';
+import { Home } from 'pages/home';
+import { Register } from 'pages/register';
+import { SignIn } from 'pages/sign-in';
+import { Phonebook } from 'pages/phonebook';
+import { useAuth } from '../hook/useAuth/useAuth';
+import { ProtectedRoute } from './ProtectedRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/auth.thunk';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <div>
-      <h1 className={css.title}>Phonebook</h1>
-      <ContactForm />
-      <h2 className={css.title}>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <b className={css.loading}>Loading...</b>}
-      <ContactList />
-    </div>
+  return isRefreshing ? (
+    <div>Loading...</div>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<SignIn />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <ProtectedRoute component={<Phonebook />} redirectTo={'/sign-in'} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };

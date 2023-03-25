@@ -1,4 +1,8 @@
-import { fetchContacts, addContact, deleteContact } from 'redux/operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from 'redux/contacts/contacts.thunk';
 
 const { createSlice } = require('@reduxjs/toolkit');
 
